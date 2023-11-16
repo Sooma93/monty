@@ -41,4 +41,24 @@ void find_func(char *opcode, char *val, int l_number, int format);
 void open_file(char *f_name);
 int parse_line(char *buffer, int l_number, int format);
 void error(int err_code, ...);
+void more_error(int error_code, ...);
+
+
+/** stack **/
+void add_to_stack(stack_t **new, __attribute__((unused))unsigned int ln);
+void print_stack(stack_t **stack, unsigned int line_num);
+void pop_top(stack_t **stack, unsigned int line_numb);
+void print_top(stack_t **stack, unsigned int line_numb);
+void div_nodes(stack_t **stack, unsigned int line_numb);
+void nop(stack_t **stack, unsigned int line_numb);
+void swap_nodes(stack_t **stack, unsigned int line_numb);
+void sub_nodes(stack_t **stack, unsigned int line_numb);
+void add_nodes(stack_t **stack, unsigned int line_numb);
+
+
+
+
+
+
+
 #endif

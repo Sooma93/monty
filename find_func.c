@@ -19,8 +19,8 @@ void find_func(char *opcode, char *val, int l_number, int format)
 		{"pint", print_top},
 		{"pop", pop_top},
 		{"nop", nop},
-		{"swap", swap_node},
-		{"add", add_node},
+		{"swap", swap_nodes},
+		{"add", add_nodes},
 		{NULL, NULL}
 	};
 
@@ -31,10 +31,48 @@ void find_func(char *opcode, char *val, int l_number, int format)
 	{
 		if (strcmp(opcode, func_list[j].opcode) == 0)
 		{
-			cal_fun(func_list[j].f, opcode, val, l_number, format);
+			call_fun(func_list[j].f, opcode, val, l_number, format);
 			flag = 0;
 		}
 	}
 	if (flag == 1)
 		error(3, l_number, opcode);
+}
+/**
+ * call_func - call
+ * @func: pointer
+ * @op: operation
+ * @val: string
+ * @lin: line number
+ * @format: format
+ */
+void call_fun(op_fun func, char *op, char *val, int ln, int format)
+{
+	stack_t *node;
+	int flag;
+	int i;
+
+	flag = 1;
+	if (strcmp(op, "push") == 0)
+	{
+		if (val != NULL && val[0] == '-')
+		{
+		val = val + 1;
+		flag = -1;
+		}
+		if (val == NULL)
+			error(5, ln);
+		for (i = 0;val[i] != '\0'; i++)
+		{
+			if (isdigit(val[i]) == 0)
+				error(5, ln);
+		}
+		node = (create_node(atoi(val) * flag));
+		if (format == 0)
+			func (&node, ln);
+		if (format == 1)
+			add_to_queue(&node, ln);
+	}
+	else
+		func(&head, ln);
 }

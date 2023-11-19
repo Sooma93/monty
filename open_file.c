@@ -1,4 +1,6 @@
 #include "monty.h"
+#include <stdio.h>
+#include <stdlib.h>
 /**
  * open_file - open file
  * @f_name: name of file
@@ -15,15 +17,16 @@ void open_file(char *f_name)
 }
 /**
  * read_file - read file
- * @fd: pointer
- * Return: void
+ * @f: pointer
+ * Return: 0
  */
-void read_file(FILE *fd)
+void read_file(FILE *f)
 {
 	int l_number, format = 0;
 	char *buffer = NULL;
 	size_t len = 0;
-	for (l_number = 1; getline(&buffer, &len, fd) != -1; l_number++)
+
+	for (l_number = 1; getline(&buffer, &len, f) != -1; l_number++)
 	{
 		format = parse_line(buffer, l_number, format);
 	}
@@ -54,4 +57,18 @@ int parse_line(char *buffer, int l_number, int format)
 		return (1);
 	find_func(opcode, val, l_number, format);
 	return (format);
+}
+
+
+/**
+ * custom_getline - getline
+ * @lineptr: lines
+ * @n: line number
+ * @stream: stream
+ * Return: all
+ */
+
+ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream)
+{
+	return getline(lineptr, n, stream);
 }

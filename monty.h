@@ -5,6 +5,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <ctype.h>
+#define _POSIX_C_SOURCE200809L
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -36,13 +38,13 @@ typedef struct instruction_s
 } instruction_t;
 extern stack_t *head;
 typedef void (*op_fun)(stack_t **, unsigned int);
-void read_file(FILE *fd);
+void read_file(FILE *f);
 void find_func(char *opcode, char *val, int l_number, int format);
 void open_file(char *f_name);
 int parse_line(char *buffer, int l_number, int format);
 void error(int err_code, ...);
 void more_error(int error_code, ...);
-
+void call_fun(op_fun func, char *op, char *val, int ln, int format);
 
 /** stack **/
 void add_to_stack(stack_t **new, __attribute__((unused))unsigned int ln);
@@ -54,8 +56,12 @@ void nop(stack_t **stack, unsigned int line_numb);
 void swap_nodes(stack_t **stack, unsigned int line_numb);
 void sub_nodes(stack_t **stack, unsigned int line_numb);
 void add_nodes(stack_t **stack, unsigned int line_numb);
-
-
+void free_nodes(void);
+void add_to_queue(stack_t **, unsigned int);
+stack_t *create_node(int num);
+void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int line);
+int main(int argc, char *argv[]);
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 
 
 

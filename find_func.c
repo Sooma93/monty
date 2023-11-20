@@ -23,6 +23,8 @@ void find_func(char *opcode, char *val, int l_number, int format)
 		{"add", add_nodes},
 		{"sub", sub_nodes},
 		{"div", div_nodes},
+		{"mul", mul_nodes},
+		{"mod", mod_nodes},
 		{NULL, NULL}
 	};
 

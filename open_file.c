@@ -70,5 +70,5 @@ int parse_line(char *buffer, int l_number, int format)
 
 ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream)
 {
-	return getline(lineptr, n, stream);
+	return (getline(lineptr, n, stream));
 }

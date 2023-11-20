@@ -38,3 +38,37 @@ void print_stack(stack_t **stack, unsigned int line_num)
 		tmp = tmp->next;
 	}
 }
+/**
+ * mul_nodes - multaplie
+ * @stack: pointer
+ * @l_number: line number
+ */
+void mul_nodes(stack_t **stack, unsigned int l_number)
+{
+	int sum;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		more_error(8, l_number, "mul");
+	(*stack) = (*stack)->next;
+	sum = (*stack)->n * (*stack)->prev->n;
+	(*stack)->n = sum;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}
+/**
+ * mod_nodes - mod
+ * @stack: pointer
+ * @l_number: line number
+ */
+void mod_nodes(stack_t **stack, unsigned int l_number)
+{
+	int sum;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		more_error(8, l_number, "mod");
+	(*stack) = (*stack)->next;
+	sum = (*stack)->n % (*stack)->prev->n;
+	(*stack)->n = sum;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}

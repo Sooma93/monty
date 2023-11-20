@@ -62,6 +62,8 @@ stack_t *create_node(int num);
 void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int line);
 int main(int argc, char *argv[]);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
+void mul_nodes(stack_t **stack, unsigned int l_number);
+void mod_nodes(stack_t **stack, unsigned int l_number);
 
 
 
